@@ -1,0 +1,10 @@
+{
+    "name": "CAP Node.js dev with Neovim - dev container",
+    "build": {
+        "dockerfile": "Dockerfile"
+    },
+    "forwardPorts": [
+        4004
+    ],
+    "remoteUser": "node"
+}
