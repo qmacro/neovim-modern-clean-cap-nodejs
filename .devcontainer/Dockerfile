@@ -1,44 +1,18 @@
 # syntax=docker/dockerfile:1
 
-# This is a bit hacky / messy but it works for now ...
-
-# --------------------------------------------------------------------
-# Base
-
-FROM debian:12 AS builder-base
-RUN apt-get update
-RUN apt-get -y install ca-certificates ninja-build gettext cmake unzip curl build-essential git file libevent-dev ncurses-dev bison pkg-config vim
-RUN mkdir /pdebuilder
-
-# --------------------------------------------------------------------
-# Neovim
-
-FROM builder-base AS builder-neovim
-WORKDIR /pdebuilder
-RUN git clone https://github.com/neovim/neovim \
-  && cd neovim \
-  && make CMAKE_BUILD_TYPE=Release \
-  && cd build \
-  && cpack -G DEB \
-  && echo NEOVIM DONE
-
-# --------------------------------------------------------------------
-# Main
-
 FROM mcr.microsoft.com/vscode/devcontainers/javascript-node:22
 
 ARG ARCH=x86_64
 ARG ARCH_SHORT=x64
-
-COPY --from=builder-neovim /pdebuilder/neovim/build/nvim-linux-$ARCH.deb /tmp
 
 # Install some generally useful tools
 RUN apt-get update \
     && apt-get -y install --no-install-recommends \
     curl git sqlite3 entr source-highlight
 
-# Install Neovim
-RUN dpkg -i /tmp/nvim-linux-$ARCH.deb
+# Install Neovim 0.11+
+RUN curl -L https://github.com/neovim/neovim/releases/download/v0.11.2/nvim-linux-x86_64.tar.gz \
+  | tar -C /usr --strip-components 1 -xzf -
 
 # Install CAP SDK, plus CDS and typescript language server packages
 USER node
@@ -65,6 +39,10 @@ RUN mkdir -p "$HOME/.config" \
   && cp -a /tmp/dotfiles/config/nvim-configs/clean "$HOME/.config/nvim"
 
 RUN echo 'export PS1=${PS1/\$ /\\\\n$ }' >> /home/node/.bashrc
+
+# Initial install of packages in Neovim
+RUN cd "$HOME" \
+  && nvim --headless +'Lazy! sync' +qa
 
 # Ready!
 WORKDIR /home/node
