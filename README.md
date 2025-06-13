@@ -44,7 +44,7 @@ This emits something like this:
 glorious-lamp-gpxjgwjq5gr39r55
 ```
 
-It may take a minute or two to provision, but then you can check it's there with:
+It may take a minute or two to provision, but then you can check the status with:
 
 ```bash
 gh codespace ls
