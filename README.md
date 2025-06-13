@@ -23,7 +23,7 @@ You'll need an account on GitHub and will need [gh], the GitHub CLI. The `gh` co
 First, authenticate with `gh`, explicitly specifying the `codespace` scope, because this is needed to work with codespaces:
 
 ```bash
-gh auth login --scope codespace
+gh auth login --scopes codespace
 ```
 
 ### Create a codespace
