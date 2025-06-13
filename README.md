@@ -2,21 +2,19 @@
 
 This repo accompanies the blog post [A modern and clean Neovim setup for CAP Node.js - configuration and diagnostics](https://qmacro.org/blog/posts/2025/06/10/a-modern-and-clean-neovim-setup-for-cap-node.js-configuration-and-diagnostics/) and provides a dev container definition for an environment with Neovim (0.11+) and the configuration in the blog post, along with CAP Node.js too.
 
-The idea is that you can try out what you read in the blog post by starting up a CodeSpace here on GitHub:
+The idea is that you can try out what you read in the blog post by starting up a CodeSpace here on GitHub. Here's how to start up a codespace from the GitHub Web UI:
 
 ![codespace startup](assets/create-codespace-on-main.png)
 
 > Remember to delete your CodeSpace when you're done!
 
-Then you can use the CodeSpace, specifically the shell that it makes available, to run Neovim and try out the features described and configured.
+Then you can use the CodeSpace, specifically the shell that it makes available, to run Neovim and try out the features described and configured. But there's a better way.
 
-For more on using Codespaces like this, see [Exploring codespaces as temporary dev containers], which has details on the commands used below.
+## Trying out the Neovim config in a codespace
 
-## Using the config
+Instead of creating and using a codespace from the GitHub Web UI, here's an example using the [gh codespace ssh] feature. This will give you perhaps a better impression and experience, as you'll be using Neovim within a real terminal emulator, rather than one in the browser.
 
-Here's an example using the [gh codespace ssh] feature. You'll need an account on GitHub and will need [gh], the GitHub CLI.
-
-> The `gh` command offers interactive command execution, where it prompts you for input, or you can supply everything that you need via options. In this example the latter approach is taken.
+You'll need an account on GitHub and will need [gh], the GitHub CLI. The `gh` command offers interactive command execution, where it prompts you for input, or you can supply everything that you need via options. In this example the latter approach is taken.
 
 > For illustration purposes, I'm using my "alternative" test GitHub user `qmacro-dev` which is separate to my main GitHub user (`qmacro`) that actually owns this repo, so you can see how the flow is for you.
 
@@ -113,6 +111,12 @@ While you specified a short retention period when creating the codespace, you ma
 ```bash
 gh codespace delete --codespace glorious-lamp-gpxjgwjq5gr39r55
 ```
+
+---
+
+For more on using Codespaces like this, see [Exploring codespaces as temporary dev containers], which has details on the commands used below.
+
+---
 
 [Exploring codespaces as temporary dev containers]: https://qmacro.org/blog/posts/2024/01/26/exploring-codespaces-as-temporary-dev-containers/
 [gh codespace ssh]: https://cli.github.com/manual/gh_codespace_ssh
