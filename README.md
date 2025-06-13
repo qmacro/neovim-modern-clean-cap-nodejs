@@ -106,6 +106,14 @@ This should take you into `$HOME/testproj/` where you can then open e.g. `db/sch
 
 > If you are not using a font that supports the icons in the [diagnostic summary in the status line] then you can turn the icons off with `:lua require('mini.statusline').setup({ use_icons = false })`.
 
+### Clean up
+
+While you specified a short retention period when creating the codespace, you may wish to delete it explicitly, which you can do, like this:
+
+```bash
+gh codespace delete --codespace glorious-lamp-gpxjgwjq5gr39r55
+```
+
 [Exploring codespaces as temporary dev containers]: https://qmacro.org/blog/posts/2024/01/26/exploring-codespaces-as-temporary-dev-containers/
 [gh codespace ssh]: https://cli.github.com/manual/gh_codespace_ssh
 [gh]: https://github.com/cli/cli#installation
