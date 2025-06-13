@@ -22,6 +22,7 @@ RUN npm config set prefix "$NPMGLOBAL"
 RUN npm install -g \
   @sap/cds-dk \
   @sap/cds-lsp \
+  typescript \
   typescript-language-server
 
 # Some helpful setup
